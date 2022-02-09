@@ -4,7 +4,7 @@ import CsvFile from "../model/CsvFile.js";
 const authToken = "Bearer aSuperSecretKey";
 const readFiles = (files, callback) => {
   let calls = [];
-  files.forEach((fileName) => {
+  files.sort().forEach((fileName) => {
     calls.push(
       axios
         .get(`https://echo-serv.tbxnet.com/v1/secret/file/${fileName}`, {
