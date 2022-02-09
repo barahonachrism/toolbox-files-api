@@ -1,9 +1,9 @@
 class CsvLine {
-    constructor(text,number,hex){
-        this.text = text;
-        this.number = number;
-        this.hex = hex;
-    }
+  constructor (text, number, hex) {
+    this.text = text
+    this.number = number
+    this.hex = hex
+  }
 }
 
-export default CsvLine;
+export default CsvLine

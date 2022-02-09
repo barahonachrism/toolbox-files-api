@@ -1,84 +1,86 @@
-import axios from "axios";
-import CsvFile from "../model/CsvFile.js";
+import axios from 'axios'
+import CsvFile from '../model/CsvFile.js'
 
-const authToken = "Bearer aSuperSecretKey";
+const authToken = 'Bearer aSuperSecretKey'
 const readFiles = (files, callback) => {
-  let calls = [];
+  const calls = []
   files.sort().forEach((fileName) => {
     calls.push(
       axios
         .get(`https://echo-serv.tbxnet.com/v1/secret/file/${fileName}`, {
           headers: {
             Authorization: authToken
-          },
+          }
         })
         .catch((error) => {
-          console.error(`Error al procesar el archivo ${fileName} ${error.message}`);
+          console.error(
+            `Error al procesar el archivo ${fileName} ${error.message}`
+          )
         })
-    );
-  });
+    )
+  })
 
   axios
     .all(calls)
     .then(
       axios.spread((...responses) => {
-        let csvFiles = [];
+        const csvFiles = []
         responses.forEach((response) => {
           if (response && response.data) {
-            let jsonData = processFile(response.data);
-            if(jsonData){
-                csvFiles.push(jsonData);
-            }            
+            const jsonData = processFile(response.data)
+            if (jsonData) {
+              csvFiles.push(jsonData)
+            }
           }
-        });
-        callback(csvFiles);
+        })
+        callback(csvFiles)
       })
     )
     .catch((errors) => {
-      console.log("error", errors);
-    });
-};
+      console.log('Error', errors)
+    })
+}
 
 const readFile = async (filename, callback) => {
   axios
     .get(`https://echo-serv.tbxnet.com/v1/secret/file/${filename}`, {
       headers: {
-        Authorization: authToken,
-      },
+        Authorization: authToken
+      }
     })
     .then(function (response) {
-      callback(null, response.data);
+      callback(null, response.data)
     })
     .catch(function (error) {
-      callback(error, null);
-    });
-};
+      callback(error, null)
+    })
+}
 
 const listFiles = (callback) => {
   axios
-    .get("https://echo-serv.tbxnet.com/v1/secret/files", {
+    .get('https://echo-serv.tbxnet.com/v1/secret/files', {
       headers: {
-        Authorization: authToken,
-      },
+        Authorization: authToken
+      }
     })
     .then(function (response) {
-      callback(null, response.data.files);
+      callback(null, response.data.files)
     })
     .catch(function (error) {
-      callback(error, null);
-    });
-};
+      callback(error, null)
+    })
+}
 
 const processFile = (fileData) => {
-  let lines = fileData.split("\n");
-  let csvFile = new CsvFile();
+  const lines = fileData.split('\n')
+  const csvFile = new CsvFile()
   for (let i = 1; i < lines.length; i++) {
-    csvFile.addLine(lines[i]);
+    csvFile.addLine(lines[i])
   }
   if (csvFile.lines.length > 0) {
-    return csvFile;
+    return csvFile
   }
-  return null;
-};
+  return null
+}
 
-export { readFiles, readFile, listFiles, processFile };
+export { readFiles, readFile, listFiles, processFile }
