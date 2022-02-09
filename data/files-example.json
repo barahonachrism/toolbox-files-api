@@ -1,0 +1,45 @@
+[
+  {
+    "file": "test1.csv"
+  },
+  {
+    "file": "test2.csv",
+    "lines": [
+      {
+        "text": "QCqpb"
+      },
+      {
+        "text": "LCvehdPjZWTWlle",
+        "number": 522,
+        "hex": "4310f368b10a1fb1defb177476086ed0"
+      }
+    ]
+  },
+  {
+    "file": "test3.csv",
+    "lines": [
+      {
+        "text": "pjHDR"
+      },
+      {
+        "text": "DeAq",
+        "number": 42293,
+        "hex": "da5f5c819dfdf9c98bdf9cb24dd6eb16"
+      },
+      {
+        "text": "Ah",
+        "number": 25,
+        "hex": "16ba66fe00635a01688e1fda7f0a70dc"
+      },
+      {
+        "text": "LYTzjxmNwDKTN",
+        "number": 58,
+        "hex": "4896f2056680ed3077369595c1829003"
+      }
+    ]
+  },
+  { "file": "test4.csv" },
+  { "file": "test5.csv" },
+  { "file": "test6.csv" },
+  { "file": "test9.csv" }
+]
