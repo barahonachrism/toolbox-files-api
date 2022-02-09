@@ -17,16 +17,16 @@ filesRouter.route('/list')
   listFiles(function (error, files) {
       if (error) {
         res.statusCode = 500;
-        res.end({
+        res.send({
           "code": "SYS-ERR",
           "message": "Error reading list files",
           "details": JSON.stringify(error),
           "status": 500
         });
       } else {
-        res.send({files});
-        next();  
+        res.send({files});        
       }
+      next();  
   });
 });
 
